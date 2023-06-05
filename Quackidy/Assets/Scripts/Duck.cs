@@ -28,17 +28,19 @@ public class Duck : MonoBehaviour ,IDamageable
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        transform.up = Vector3.Lerp(transform.up,(Vector2)(transform.position - mousePosition), lerpAmmount * Time.deltaTime);
+        Vector3 mousePosition = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        rotation.x = 0;
+        rotation.y = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation,rotation,lerpAmmount *Time.deltaTime);
         if (move)
             Move();
     }
 
     private void Move()
     {
-        rb.velocity = -transform.up * moveSpeed;
+        rb.velocity = transform.up * moveSpeed;
     }
 
     public void Push(Vector2 direction, float pushForce)
@@ -52,11 +54,19 @@ public class Duck : MonoBehaviour ,IDamageable
     {
         move = false;
         yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector3.zero;
+        //rb.angularVelocity = 0;
         move = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.gameObject.GetComponent<IDamageable>()?.Push( collision.transform.position- transform.position , pushForce);
+        
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.GetComponent<IInteractable>()?.Interact();
     }
 }
 

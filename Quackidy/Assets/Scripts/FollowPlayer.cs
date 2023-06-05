@@ -9,6 +9,9 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float lerpAmmount;
 
+    public Vector2 YLims { get => yLims; set => yLims = value; }
+    public Vector2 XLims { get => xLims; set => xLims = value; }
+
     // Update is called once per frame
     void Update()
     {

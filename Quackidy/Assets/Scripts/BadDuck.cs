@@ -22,13 +22,16 @@ public class BadDuck : MonoBehaviour,IDamageable
     void Update()
     {
         
-        transform.up = Vector3.Lerp(transform.up, transform.position - target.position, lerpAmmount * Time.deltaTime);
+        //transform.up = Vector3.Lerp(transform.up, (target.position - transform.position).normalized , lerpAmmount * Time.deltaTime);
+        Vector3 t = Vector3.RotateTowards(transform.up, (Vector2)(target.position - transform.position).normalized, lerpAmmount * Time.deltaTime, 0);
+        t.z = 0;
+        transform.up = t;
         if (move)
             Move();
     }
     private void Move()
     {
-        rb.velocity = -transform.up * moveSpeed;
+        rb.velocity = transform.up * moveSpeed;
 
     }
 
@@ -42,6 +45,7 @@ public class BadDuck : MonoBehaviour,IDamageable
     {
         move = false;
         yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector3.zero;
         move = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
