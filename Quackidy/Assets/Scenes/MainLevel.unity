@@ -5775,7 +5775,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 233725234079498605, guid: 5956e1a298e777444a0057225aec67da, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233725234079498605, guid: 5956e1a298e777444a0057225aec67da, type: 3}
       propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233725234079498605, guid: 5956e1a298e777444a0057225aec67da, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6800335051372744951, guid: 5956e1a298e777444a0057225aec67da, type: 3}
@@ -5832,11 +5840,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9125586333545975072, guid: 5956e1a298e777444a0057225aec67da, type: 3}
       propertyPath: moveSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9125586333545975072, guid: 5956e1a298e777444a0057225aec67da, type: 3}
       propertyPath: lerpAmmount
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5956e1a298e777444a0057225aec67da, type: 3}

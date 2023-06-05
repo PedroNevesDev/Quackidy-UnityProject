@@ -29,7 +29,7 @@ public class Duck : MonoBehaviour ,IDamageable
     void Update()
     {
         Vector3 mousePosition = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+        float angle = (Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg) - 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rotation.x = 0;
         rotation.y = 0;
