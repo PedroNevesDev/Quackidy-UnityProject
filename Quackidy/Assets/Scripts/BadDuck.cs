@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BadDuck : MonoBehaviour,IDamageable
@@ -11,6 +11,7 @@ public class BadDuck : MonoBehaviour,IDamageable
     Rigidbody2D rb;
     Transform target;
     bool move = true;
+    float slow = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class BadDuck : MonoBehaviour,IDamageable
     }
     private void Move()
     {
-        rb.velocity = transform.up * moveSpeed;
+        rb.velocity = transform.up * moveSpeed* slow;
 
     }
 
@@ -52,5 +53,15 @@ public class BadDuck : MonoBehaviour,IDamageable
     {
         
         collision.gameObject.GetComponent<IDamageable>()?.Push(collision.transform.position - transform.position  ,pushForce);
+    }
+
+    public void SlowDown()
+    {
+        slow = 0.75f;
+    }
+
+    public void StopSlow()
+    {
+        slow = 1;
     }
 }

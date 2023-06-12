@@ -15,6 +15,8 @@ public class FollowCursor : MonoBehaviour
 
     void FaceMouse()
     {
+        if(Time.deltaTime == 0f)
+        { return; }
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 

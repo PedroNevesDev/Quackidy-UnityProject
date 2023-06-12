@@ -18,6 +18,9 @@ public class DuckSpawner : MonoBehaviour
     [SerializeField] BadDuck badDuckPrefab;
     [SerializeField] Seed seedPrefab;
 
+    [SerializeField] LookAtTarget arrow;
+    Duck duck;
+
     public static DuckSpawner Instance { get => instance; set => instance = value; }
 
     private void Awake()
@@ -28,6 +31,7 @@ public class DuckSpawner : MonoBehaviour
     }
     private void Start()
     {
+        duck = Duck.Instance;
         FollowPlayer follow = Camera.main.GetComponent<FollowPlayer>();
         xLims = follow.XLims;
         yLims = follow.YLims;
@@ -41,7 +45,9 @@ public class DuckSpawner : MonoBehaviour
         if (seedTimer > timeToSpawnSeed)
         {
             seedTimer = 0;
-            Instantiate(seedPrefab, new Vector3(Random.Range(xLims.x, xLims.y), Random.Range(yLims.x, yLims.y), 0), Quaternion.identity);
+            Seed newSeed = Instantiate(seedPrefab, new Vector3(Random.Range(xLims.x, xLims.y), Random.Range(yLims.x, yLims.y), 0), Quaternion.identity);
+            LookAtTarget newarrow = Instantiate(arrow, duck.transform.position, Quaternion.identity, duck.transform);
+            newarrow.Target = newSeed.transform;
         }
     }
 

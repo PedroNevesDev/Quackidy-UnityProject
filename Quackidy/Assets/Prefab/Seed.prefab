@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreToAdd: 1
+  speedToAdd: 0.2
+  foodToAdd: 0.35
