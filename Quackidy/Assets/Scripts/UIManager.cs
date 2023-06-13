@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] float foodToLose;
     float foodToLoseBoost = 1f;
     [SerializeField] Image hunger;
+    [SerializeField] Texture2D cursor;
 
     public static UIManager Instance { get => instance; set => instance = value; }
     public float FoodToLoseBoost { get => foodToLoseBoost; set => foodToLoseBoost = value; }
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        Cursor.SetCursor(cursor, Camera.main.ScreenToWorldPoint(Input.mousePosition), CursorMode.ForceSoftware);
         if (instance)
             Destroy(gameObject);
         instance = this;

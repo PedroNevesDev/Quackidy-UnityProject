@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     static LevelManager instance;
+    [SerializeField] Texture2D cursor;
     public static LevelManager Instance { get => instance; set => instance = value; }
 
     UIManager ui;
@@ -30,6 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         ui = UIManager.Instance;
+        Cursor.SetCursor(cursor,Camera.main.ScreenToWorldPoint(Input.mousePosition),CursorMode.ForceSoftware);
     }
     public void ChangeLevel(string level)
     {
